@@ -2,12 +2,12 @@ class Plant:
     def __init__(self,
                  name: str,
                  height: int | float,
-                 age: int,
-                 grow: float) -> None:
+                 days_old: int,
+                 growing: float) -> None:
         self.name = name
         self._height = height
-        self._age = age
-        self.grow = grow
+        self._days_old = days_old
+        self.growing = growing
         print(f"Plant created: {self.name}:", end=' ')
         print(f"{self.get_height()} cm, {self.get_age()} days old")
 
@@ -17,7 +17,7 @@ class Plant:
 
     def set_age(self, num: int) -> None:
         if 0 <= num:
-            self._age = num
+            self._days_old = num
             print(f"Age updated: {self.get_age()} days")
         else:
             print(f"{self.name}: Error, age can't be negative")
@@ -32,15 +32,20 @@ class Plant:
             print("Height update rejected")
 
     def get_age(self) -> int | float:
-        return self._age
+        return self._days_old
 
     def get_height(self) -> int | float:
         return self._height
 
 
 if __name__ == "__main__":
-    plant = Plant("Rose", 25, 30, 0.8)
-    plant.set_height(30)
+    print("=== Garden Security System ===")
+    plant = Plant("Rose", 15, 10, 0.8)
+    print("\n")
+    plant.set_height(25)
+    plant.set_age(30)
+    print("\n")
     plant.set_height(-50)
     plant.set_age(-5)
+    print("\n")
     plant.show()

@@ -2,21 +2,21 @@ class Plant:
     def __init__(self,
                  name: str,
                  height: int | float,
-                 age: int,
-                 grow: float) -> None:
+                 days_old: int,
+                 growing: float) -> None:
         self.name = name
         self.height = height
-        self.age = age
-        self.grow = grow
+        self.days_old = days_old
+        self.growing = growing
 
     def show(self) -> None:
-        print(f"{self.name}: {round(self.height, 2)} cm, {self.age} days old")
+        print(f"{self.name}: {round(self.height, 2)} cm, {self.days_old} days old")
 
-    def aged(self) -> None:
-        self.age += 1
+    def age(self) -> None:
+        self.days_old += 1
 
-    def growed(self) -> None:
-        self.height += self.grow
+    def grow(self) -> None:
+        self.height += self.growing
 
 
 if __name__ == "__main__":
@@ -29,6 +29,6 @@ if __name__ == "__main__":
 
     for i in range(i, 7):
         print(f"=== Day {i + 1} ===")
-        p3.aged()
-        p3.growed()
+        p3.age()
+        p3.grow()
         p3.show()
