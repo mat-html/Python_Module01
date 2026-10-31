@@ -15,10 +15,16 @@ class Plant:
                  name: str,
                  height: int | float,
                  days_old: int,
-                 growing: float | int) -> None:
+                 growing: float = 0.3) -> None:
         self.name = name
-        self._height = height
-        self._days_old = days_old
+        if height < 0:
+            self._height = 0.0
+        else:
+            self._height = height
+        if days_old < 0:
+            self._days_old = 0
+        else:
+            self._days_old = days_old
         self.growing = growing
         self._stats = self.Statistics()
 
@@ -61,9 +67,9 @@ class Plant:
     def is_more_then_year(year_old: int) -> bool:
         return year_old > 365
 
-    @staticmethod
-    def anonymus_plant() -> "Plant":
-        return Plant("Unknown plant", 0, 0, 0.0)
+    @classmethod
+    def anonymus_plant(cls) -> "Plant":
+        return cls("Unknown plant", 0, 0, 0.0)
 
     def show_stats(self):
         self._stats.display()
@@ -76,7 +82,8 @@ class Flower(Plant):
                  days_old: int,
                  growing: float,
                  color: str,
-                 blooming: bool) -> None:
+                 blooming: bool = False
+                 ) -> None:
         super().__init__(name, height, days_old, growing)
         self.color = color
         self.blooming = blooming
@@ -109,12 +116,11 @@ class Tree (Plant):
                  height: int | float,
                  days_old: int,
                  growing: float,
-                 trunk_diameter: float,
-                 shade: bool,
+                 trunk_diameter: float = 0
                  ) -> None:
         super().__init__(name, height, days_old, growing)
         self.trunk_diameter = trunk_diameter
-        self.shade = shade
+        self.shade: bool = False
 
     def produce_shade(self):
         self._stats.clicks_provide_shadow += 1
@@ -135,7 +141,7 @@ class Vegetable(Plant):
                  days_old: int,
                  growing: float,
                  harvest_season: str,
-                 nutritional_value: int | float,
+                 nutritional_value: int | float = 0
                  ) -> None:
         super().__init__(name, height, days_old, growing)
         self.harvest_season = harvest_season
@@ -165,7 +171,8 @@ class Seed(Flower):
                  days_old: int,
                  growing: float,
                  color: str,
-                 blooming: bool) -> None:
+                 blooming: bool = False
+                 ) -> None:
         super().__init__(name, height, days_old, growing, color, blooming)
         self.seeds = 0
 
@@ -183,9 +190,9 @@ def display_stats(plant: Plant):
 
 
 if __name__ == "__main__":
-    flower = Flower("Rose", 25, 30, 0.5, "red", False)
-    tree = Tree("Oak", 200.0, 365, 0.1, 5.0, False)
-    seed = Seed("Tomato", 5.0, 10, 1.2, "Red", False)
+    flower = Flower("Rose", 25, 30, 0.5, "red")
+    tree = Tree("Oak", 200.0, 365, 0.1, 5.0)
+    seed = Seed("Tomato", 5.0, 10, 1.2, "Red")
     anonymus = Plant.anonymus_plant()
     print("=== Garden statistics ===")
     print("=== Check year-old")

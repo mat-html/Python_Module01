@@ -3,9 +3,16 @@ class Plant:
                  name: str,
                  height: int | float,
                  days_old: int,
-                 growing: float) -> None:
+                 growing: float = 0.3) -> None:
         self.name = name
-        self._height = height
+        if height < 0:
+            self._height = 0.0
+        else:
+            self._height = height
+        if days_old < 0:
+            self._days_old = 0
+        else:
+            self._days_old = days_old
         self._days_old = days_old
         self.growing = growing
         print(f"Plant created: {self.name}:", end=' ')
@@ -41,11 +48,11 @@ class Plant:
 if __name__ == "__main__":
     print("=== Garden Security System ===")
     plant = Plant("Rose", 15, 10, 0.8)
-    print("\n")
+    print()
     plant.set_height(25)
     plant.set_age(30)
-    print("\n")
+    print()
     plant.set_height(-50)
     plant.set_age(-5)
-    print("\n")
+    print()
     plant.show()

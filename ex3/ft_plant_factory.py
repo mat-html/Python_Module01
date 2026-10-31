@@ -24,7 +24,9 @@ if __name__ == "__main__":
     plants = [
         Plant("Rose", 25, 30, 0.8),
         Plant("Sunflower", 80, 45, 1.2),
-        Plant("Cactus", 15, 120, 0.4)
+        Plant("Cactus", 15, 120, 0.4),
+        Plant("Tomato", 30, 45, 2.9),
+        Plant("Oak", 150, 59, 0.7)
     ]
     print("=== Plant Factory Output ===")
     for plant in plants:

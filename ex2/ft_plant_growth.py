@@ -3,7 +3,7 @@ class Plant:
                  name: str,
                  height: int | float,
                  days_old: int,
-                 growing: float) -> None:
+                 growing: float = 0.3) -> None:
         self.name = name
         self.height = height
         self.days_old = days_old
@@ -24,14 +24,14 @@ class Plant:
 
 if __name__ == "__main__":
     i = 0
-    p1 = Plant("Rose", 25, 30, 0.8)
-    p2 = Plant("Sunflower", 80, 45, 1.2)
-    p3 = Plant("Cactus", 15, 120, 0.4)
+    p1 = Plant("Rose", 25, 30)
+    # p2 = Plant("Sunflower", 80, 45, 1.2)
+    # p3 = Plant("Cactus", 15, 120, 0.4)
     print("=== Garden Plant Growth ===")
-    p3.show()
+    p1.show()
 
     for i in range(i, 7):
         print(f"=== Day {i + 1} ===")
-        p3.age()
-        p3.grow()
-        p3.show()
+        p1.age()
+        p1.grow()
+        p1.show()
